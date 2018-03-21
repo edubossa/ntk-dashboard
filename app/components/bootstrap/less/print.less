@@ -1,0 +1,138 @@
+/*! Source: https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css */
+
+// ==========================================================================
+// Print styles.
+// Inlined to avoid the additional HTTP request: h5bp.com/r
+// ==========================================================================
+
+@media print {
+    *,
+    *:before,
+    *:after {
+        background: transparent !important;
+        color: #000 !important; // Black prints faster: h5bp.com/s
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    // Don't show links that are fragment identifiers,
+    // or use the `javascript:` pseudo protocol
+    a[href^="#"]:after,
+    a[href^="javascript:"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    thead {
+        display: table-header-group; // h5bp.com/t
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+
+    // Bootstrap specific changes start
+
+    // Bootstrap components
+    .navbar {
+        display: none;
+    }
+    .btn,
+    .dropup > .btn {
+        > .caret {
+            border-top-color: #000 !important;
+        }
+    }
+    .label {
+        border: 1px solid #000;
+    }
+
+    .table {
+        border-collapse: collapse !important;
+
+        td,
+        th {
+            background-color: #fff !important;
+        }
+    }
+    .table-bordered {
+        th,
+        td {
+            border: 1px solid #ddd !important;
+        }
+    }
+
+    // Bootstrap specific changes end
+}
+
+//
+// Print icons
+// --------------------------------------------------
+
+
+.print {
+  float: right;
+  font-size: (@font-size-base);
+  font-weight: @close-font-weight;
+  line-height: 1;
+  color: @close-color;
+  text-shadow: @close-text-shadow;
+  .opacity(.2);
+
+  &:hover,
+  &:focus {
+    color: @close-color;
+    text-decoration: none;
+    cursor: pointer;
+    .opacity(.5);
+    outline: none;
+  }
+
+  // Additional properties for button version
+  // iOS requires the button element instead of an anchor tag.
+  // If you want the anchor version, it requires `href="#"`.
+  // See https://developer.mozilla.org/en-US/docs/Web/Events/click#Safari_Mobile
+  button& {
+    margin: 5px 5px;
+    padding: 0;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    -webkit-appearance: none;
+  }
+}
