@@ -1,10 +1,10 @@
 <div class="container">
 
     <div class="panel panel-default panel-widget dashboard-top-left">
-
+        <br>
         <div class="row">
             <div class="col-lg-12 text-center">
-                <h3>Vendas Conciliadas</h3>
+                <span style="font-size: x-large; font-weight: bold; color: #0a68b4">Transa&ccedil;&otilde;es n&atilde;o conciliadas</span>
             </div>
         </div>
         <br>
@@ -49,10 +49,10 @@
 
 
     <div class="panel panel-default panel-widget dashboard-top-right">
-
+        <br>
         <div class="row">
             <div class="col-lg-12 text-center">
-                <h3>Vendas Nao Conciliadas</h3>
+                <span style="font-size: x-large; font-weight: bold; color: #0a68b4">Transa&ccedil;&otilde;es Conciliadas</span>
             </div>
         </div>
         <br>
@@ -96,10 +96,10 @@
     </div>
 
     <div class="panel panel-default panel-widget dashboard-bottom-left">
-
+        <br>
         <div class="row">
             <div class="col-lg-12 text-center">
-                <h3>Vendas Canceladas</h3>
+                <span style="font-size: x-large; font-weight: bold; color: #0a68b4">Transa&ccedil;&otilde;es EDI</span>
             </div>
         </div>
         <br>
@@ -145,10 +145,10 @@
 
 
     <div class="panel panel-default panel-widget dashboard-bottom-right">
-
+        <br>
         <div class="row">
             <div class="col-lg-12 text-center">
-                <h3>Gateway de Pagamentos</h3>
+                <span style="font-size: x-large; font-weight: bold; color: #0a68b4">Transa&ccedil;&otilde;es - Adquirente e Tipo</span>
             </div>
         </div>
         <br>
@@ -162,25 +162,60 @@
                     <table class="table">
                         <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Título</th>
-                            <th>Data de criação</th>
-                            <th>Última atualização</th>
+                            <th>Opera&ccedil;&atilde;o </th>
+                            <th>Total</th>
+                            <th>Cupons</th>
                             <th></th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr ng-repeat="report in reports_conciliadas | orderBy : 'id'">
-                            <td>{{report.id}}</td>
-                            <td>{{report.title}}</td>
-                            <td>{{moment(report.created_at)}}</td>
-                            <td>{{moment(report.updated_at)}}</td>
-                            <td>
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-xs btn-info-outline btn-borderless" ng-click="updatePrinterModal(printer)"><i class="fa fa-pencil fa-fw"></i></button>
-                                    <button type="button" class="btn btn-xs btn-default-outline btn-borderless" ng-click="detailPrinterModal(printer)"><i class="fa fa-info-circle fa-fw"></i></button>
-                                </div>
-                            </td>
+                        <tr>
+                            <td>Venda de Débito à Vista</td>
+                            <td>R$ 18.669,87</td>
+                            <td>218</td>
+                            <td><span class="glyphicon glyphicon-download-alt"></span></i></td>
+                        </tr>
+                        <tr>
+                            <td><b>Venda de Crébito Parcelado (Loja)</b></td>
+                            <td>R$ 1,00</td>
+                            <td>1</td>
+                            <td><span class="glyphicon glyphicon-download-alt"></span></i></td>
+                        </tr>
+                        <tr>
+                            <td>Venda de Crébito Parcelado (Administradora)</td>
+                            <td>R$ 10,00</td>
+                            <td>5</td>
+                            <td><span class="glyphicon glyphicon-download-alt"></span></i></td>
+                        </tr>
+                        <tr>
+                            <td><b>Venda de Crédito à Vista</b></td>
+                            <td>R$ 15.257,64</td>
+                            <td>158</td>
+                            <td><span class="glyphicon glyphicon-download-alt"></span></i></td>
+                        </tr>
+                        <tr>
+                            <td>Serviços adquirente</td>
+                            <td>R$ -1.498,25</td>
+                            <td>11</td>
+                            <td><span class="glyphicon glyphicon-download-alt"></span></i></td>
+                        </tr>
+                        <tr>
+                            <td><b>Desconto do Doc Refeição</b></td>
+                            <td>R$ -4,00</td>
+                            <td>1</td>
+                            <td><span class="glyphicon glyphicon-download-alt"></span></i></td>
+                        </tr>
+                        <tr>
+                            <td>Cancelamento</td>
+                            <td>R$ -22,27</td>
+                            <td>34</td>
+                            <td><span class="glyphicon glyphicon-download-alt"></span></i></td>
+                        </tr>
+                        <tr>
+                            <td><b>TOTAL</b></td>
+                            <td>R$ 32.413,99</td>
+                            <td>428</td>
+                            <td><span class="glyphicon glyphicon-download-alt"></span></i></td>
                         </tr>
                         </tbody>
                     </table>
