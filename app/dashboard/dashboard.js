@@ -1,11 +1,11 @@
 'use strict';
-angular.module('admin.dashboard', ['ngRoute', 'chart.js'])
-    .controller('DashboardViewCtrl', ['$log', '$rootScope', '$scope', function($log, $rootScope, $scope) {
+angular.module('admin.dashboard', ['ngRoute', 'chart.js', 'admin.services.dashboard'])
+    .controller('DashboardViewCtrl', ['$log', '$rootScope', '$scope', 'dashboardService', function($log, $rootScope, $scope, dashboardService ) {
     $log.debug("-- DashboardViewCtrl LOADED");
 
     $scope._isLoadingPage = false;
 
-    $scope.reports_conciliadas = [
+    /*$scope.reports_conciliadas = [
         {
             "id" : 121,
             "title" : "Venda 01",
@@ -66,23 +66,33 @@ angular.module('admin.dashboard', ['ngRoute', 'chart.js'])
             "created_at" : "2017-06-23T10:41:45.257-03:00",
             "updated_at" : "2017-09-21T13:53:11.667-03:00",
         }
-    ];
+    ];*/
 
+    $scope.reports_conciliadas = [];
+
+    $scope.load = function () {
+
+        $scope._isLoadingPage = true;
+        dashboardService.getTransactions('C').then(function successCallback(data) {
+            $scope.reports_conciliadas = data;
+
+         }, function errorCallback(response) {
+            toastr.error("Erro ao carregar as transacoes");
+            console.error("Erro ao carregar as transacoes");
+        }).finally(function() {
+            $scope._isLoadingPage = false;
+        });
+
+    }
 
     //polling status
-    var statusPollingTime = 5000;
+    var statusPollingTime = 1000 * 30;
     var statusPolling = function() {
+        //alert("ATUALIZANDO OS DADOS");
         $log.debug("* status polling STARTED");
 
-        /*sMerchant.getMerchantStatus().then(function successCallback(data) {
-            $scope.switchStatusEc = data.merchant.is_open;
-        }, function errorCallback(response) {
-        }).finally(function() {
-            $log.debug("* status polling ENDED");
-            setTimeout(function() {
-                if (typeof statusPolling === "function") statusPolling();
-            }, statusPollingTime);
-        });*/
+        $scope.load();
+
 
         setTimeout(function() {
             if (typeof statusPolling === "function") statusPolling();

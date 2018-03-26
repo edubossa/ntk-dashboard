@@ -14,29 +14,38 @@
                 <div class="loading-panel" ng-show="_isLoadingPage">
                     <svg class="spinner spinner-center" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="path" fill="none" stroke-width="3" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg>
                 </div>
-                <div class="table-responsive" style="max-height: 35vh;">
-                    <table class="table">
+                <div class="table-responsive" style="max-width: 95vh; max-height: 40vh;">
+                    <table class="table table-striped">
                         <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Título</th>
-                            <th>Data de criação</th>
-                            <th>Última atualização</th>
-                            <th></th>
+                        <tr style="color: #000000; text-align: center">
+                            <th>Data Hora</th>
+                            <th >Loja</th>
+                            <th>Autorização</th>
+                            <th>Operação</th>
+                            <th>Adquirente</th>
+                            <th>Bandeira</th>
+                            <th>Vl. bruto</th>
+                            <th>Vl. líquido</th>
+                            <th>Desc. taxa</th>
+                            <th>(%)Tx EDI</th>
+                            <th>(%)Tx Cadastrada</th>
+                            <th>Plano</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr ng-repeat="report in reports_conciliadas | orderBy : 'id'">
-                            <td>{{report.id}}</td>
-                            <td>{{report.title}}</td>
-                            <td>{{moment(report.created_at)}}</td>
-                            <td>{{moment(report.updated_at)}}</td>
-                            <td>
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-xs btn-info-outline btn-borderless" ng-click="updatePrinterModal(printer)"><i class="fa fa-pencil fa-fw"></i></button>
-                                    <button type="button" class="btn btn-xs btn-default-outline btn-borderless" ng-click="detailPrinterModal(printer)"><i class="fa fa-info-circle fa-fw"></i></button>
-                                </div>
-                            </td>
+                            <td>{{moment(report.relatorio.transacaoDataHora)}}</td>
+                            <td>{{report.loja_NomeLojaCliente}}</td>
+                            <td>{{report.relatorio.transacaoAutorizacao}}</td>
+                            <td>{{report.operacao_Nome}}</td>
+                            <td>{{report.rede_Nome}}</td>
+                            <td>{{report.bandeira_Nome}}</td>
+                            <td>{{converteGatePrice(report.relatorio.aReceberValorBruto, ",")}}</td>
+                            <td>{{converteGatePrice(report.relatorio.aReceberValorLiquido, ",")}}</td>
+                            <td>{{converteGatePrice(report.relatorio.transacaoDescTaxa, ",")}}</td>
+                            <td>{{converteGatePrice(report.relatorio.transacaoTaxaEDI, ",")}}</td>
+                            <td>{{converteGatePrice(report.relatorio.transacaoTaxaCadastrada, ",")}}</td>
+                            <td align="center">{{report.relatorio.transacaoPlano}}</td>
                         </tr>
                         </tbody>
                     </table>
@@ -159,7 +168,7 @@
                     <svg class="spinner spinner-center" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg"><circle class="path" fill="none" stroke-width="3" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg>
                 </div>
                 <div class="table-responsive" style="max-height: 35vh;">
-                    <table class="table">
+                    <table class="table table-striped">
                         <thead>
                         <tr>
                             <th>Opera&ccedil;&atilde;o </th>
@@ -172,49 +181,49 @@
                         <tr>
                             <td>Venda de Débito à Vista</td>
                             <td>R$ 18.669,87</td>
-                            <td>218</td>
+                            <td align="right">218</td>
                             <td><span class="glyphicon glyphicon-download-alt btn-success-outline btn-borderless"></span></i></td>
                         </tr>
                         <tr>
                             <td><b>Venda de Crébito Parcelado (Loja)</b></td>
-                            <td>R$ 1,00</td>
-                            <td>1</td>
+                            <td><b>R$ 1,00</b></td>
+                            <td align="right"><b>1</b></td>
                             <td><span class="glyphicon glyphicon-download-alt btn-success-outline btn-borderless"></span></i></td>
                         </tr>
                         <tr>
                             <td>Venda de Crébito Parcelado (Administradora)</td>
                             <td>R$ 10,00</td>
-                            <td>5</td>
+                            <td align="right">5</td>
                             <td><span class="glyphicon glyphicon-download-alt btn-success-outline btn-borderless"></span></i></td>
                         </tr>
                         <tr>
                             <td><b>Venda de Crédito à Vista</b></td>
-                            <td>R$ 15.257,64</td>
-                            <td>158</td>
+                            <td><b>R$ 15.257,64</b></td>
+                            <td align="right"><b>158</b></td>
                             <td><span class="glyphicon glyphicon-download-alt btn-success-outline btn-borderless"></span></i></td>
                         </tr>
                         <tr>
                             <td>Serviços adquirente</td>
                             <td>R$ -1.498,25</td>
-                            <td>11</td>
+                            <td align="right">11</td>
                             <td><span class="glyphicon glyphicon-download-alt btn-success-outline btn-borderless"></span></i></td>
                         </tr>
                         <tr>
                             <td><b>Desconto do Doc Refeição</b></td>
-                            <td>R$ -4,00</td>
-                            <td>1</td>
+                            <td><b>R$ -4,00</b></td>
+                            <td align="right"><b>1</b></td>
                             <td><span class="glyphicon glyphicon-download-alt btn-success-outline btn-borderless"></span></i></td>
                         </tr>
                         <tr>
                             <td>Cancelamento</td>
                             <td>R$ -22,27</td>
-                            <td>34</td>
+                            <td align="right">34</td>
                             <td><span class="glyphicon glyphicon-download-alt btn-success-outline btn-borderless"></span></i></td>
                         </tr>
                         <tr>
                             <td><b>TOTAL</b></td>
-                            <td>R$ 32.413,99</td>
-                            <td>428</td>
+                            <td><b>R$ 32.413,99</b></td>
+                            <td align="right" ><b>428</b></td>
                             <td><span class="glyphicon glyphicon-download-alt btn-success-outline btn-borderless"></span></i></td>
                         </tr>
                         </tbody>
