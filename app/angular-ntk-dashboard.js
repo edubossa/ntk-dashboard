@@ -255,7 +255,7 @@ angular.module('admin.services.dashboard', [])
                         'Authorization': 'Basic dmljdG9yLmR1YXJ0ZUBudGsuY29tLmJyOnZpY3Rvcg==',
                     },
                     params: {
-                        'pessoaId': '3502',
+                        'pessoaId': '3504',
                         'tecnologiaId': tecnologiaId,
                         'tecnologiaTipoId' : '3,4',
                         'dataIni' : dataIni,
@@ -284,7 +284,7 @@ angular.module('admin.services.dashboard', [])
                         'Authorization': 'Basic dmljdG9yLmR1YXJ0ZUBudGsuY29tLmJyOnZpY3Rvcg==',
                     },
                     params: {
-                        'pessoaId': '3502',
+                        'pessoaId': '3504',
                         'tecnologiaId': tecnologiaId,
                         'dataIni' : dataIni,
                         'dataFim' : dataFim

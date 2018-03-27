@@ -33,7 +33,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr ng-repeat="tr in trNaoConciliadas | orderBy : 'id'">
+                        <tr ng-repeat="tr in trNaoConciliadas | orderBy : 'transacaoDataHora':true">
                             <td>{{moment(tr.relatorio.transacaoDataHora)}}</td>
                             <td>{{tr.loja_NomeLojaCliente}}</td>
                             <td>{{tr.relatorio.transacaoAutorizacao}}</td>
@@ -90,7 +90,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr ng-repeat="tr in trConciliadas | orderBy : 'id'">
+                        <tr ng-repeat="tr in trConciliadas | orderBy : 'transacaoDataHora':true">
                             <td>{{moment(tr.relatorio.transacaoDataHora)}}</td>
                             <td>{{tr.loja_NomeLojaCliente}}</td>
                             <td>{{tr.relatorio.transacaoAutorizacao}}</td>
@@ -146,7 +146,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr ng-repeat="tr in trEDI | orderBy : 'id'">
+                        <tr ng-repeat="tr in trEDI | orderBy : 'transacaoDataHora':true">
                             <td>{{moment(tr.relatorio.transacaoDataHora)}}</td>
                             <td>{{tr.loja_NomeLojaCliente}}</td>
                             <td>{{tr.relatorio.transacaoAutorizacao}}</td>
@@ -195,7 +195,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr ng-repeat="tr in trAdquirentesTipo | orderBy : 'id'">
+                        <tr ng-repeat="tr in trAdquirentesTipo">
                             <td>{{tr.operacao_Nome}}</td>
                             <td>{{converteGatePrice(tr.valorBruto_Total, ",")}}</td>
                             <td align="right">{{tr.quantidade_Cupons}}</td>
