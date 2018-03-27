@@ -125,88 +125,87 @@ angular.module('admin', [
 var nodeAuthenticateURL = '/api/authenticate';
 'use strict';
 angular.module('admin.dashboard', ['ngRoute', 'chart.js', 'admin.services.dashboard'])
-    .controller('DashboardViewCtrl', ['$log', '$rootScope', '$scope', 'dashboardService', function($log, $rootScope, $scope, dashboardService ) {
+    .controller('DashboardViewCtrl', ['$log', '$rootScope', '$scope', 'dashboardService', '$timeout', function($log, $rootScope, $scope, dashboardService, $timeout ) {
     $log.debug("-- DashboardViewCtrl LOADED");
 
-    $scope._isLoadingPage = false;
+    $scope._isLoadingPagetrTrConciliadas = false;
+    $scope._isLoadingPageTrNaoConciliadas = false;
+    $scope._isLoadingPageTrEDI = false;
+    $scope._isLoadingPageTrAdquirentesTipo = false;
 
-    /*$scope.reports_conciliadas = [
-        {
-            "id" : 121,
-            "title" : "Venda 01",
-            "created_at" : "2017-06-23T10:41:45.257-03:00",
-            "updated_at" : "2017-09-21T13:53:11.667-03:00",
-        },
-        {
-            "id" : 122,
-            "title" : "Venda 02",
-            "created_at" : "2017-06-23T10:41:45.257-03:00",
-            "updated_at" : "2017-09-21T13:53:11.667-03:00",
-        },
-        {
-            "id" : 123,
-            "title" : "Venda 03",
-            "created_at" : "2017-06-23T10:41:45.257-03:00",
-            "updated_at" : "2017-09-21T13:53:11.667-03:00",
-        },
-        {
-            "id" : 124,
-            "title" : "Venda 04",
-            "created_at" : "2017-06-23T10:41:45.257-03:00",
-            "updated_at" : "2017-09-21T13:53:11.667-03:00",
-        },
-        {
-            "id" : 125,
-            "title" : "Venda 05",
-            "created_at" : "2017-06-23T10:41:45.257-03:00",
-            "updated_at" : "2017-09-21T13:53:11.667-03:00",
-        },
-        {
-            "id" : 126,
-            "title" : "Venda 06",
-            "created_at" : "2017-06-23T10:41:45.257-03:00",
-            "updated_at" : "2017-09-21T13:53:11.667-03:00",
-        },
-        {
-            "id" : 127,
-            "title" : "Venda 07",
-            "created_at" : "2017-06-23T10:41:45.257-03:00",
-            "updated_at" : "2017-09-21T13:53:11.667-03:00",
-        },
-        {
-            "id" : 128,
-            "title" : "Venda 08",
-            "created_at" : "2017-06-23T10:41:45.257-03:00",
-            "updated_at" : "2017-09-21T13:53:11.667-03:00",
-        },
-        {
-            "id" : 129,
-            "title" : "Venda 09",
-            "created_at" : "2017-06-23T10:41:45.257-03:00",
-            "updated_at" : "2017-09-21T13:53:11.667-03:00",
-        },
-        {
-            "id" : 130,
-            "title" : "Venda 10",
-            "created_at" : "2017-06-23T10:41:45.257-03:00",
-            "updated_at" : "2017-09-21T13:53:11.667-03:00",
-        }
-    ];*/
+    var tecnologiaIds = '4828321,4828322,4828323,4828324,4828326,4828327,4828328,4828331,4828334,4828335,4828336,4828337,4828339,4828340,4828341,4828342,4828343,4828347';
 
-    $scope.reports_conciliadas = [];
+    var timeout = 2000;
+
+    $scope.trConciliadas = [];
+    $scope.trNaoConciliadas = [];
+    $scope.trEDI = [];
+    $scope.trAdquirentesTipo = [];
+
+
 
     $scope.load = function () {
 
-        $scope._isLoadingPage = true;
-        dashboardService.getTransactions('C').then(function successCallback(data) {
-            $scope.reports_conciliadas = data;
+        //TRANSACOES NAO CONCILIADAS
+        $scope._isLoadingPageTrNaoConciliadas = true;
+        dashboardService.getTransactions(2, tecnologiaIds).then(function successCallback(data) {
+            $scope.trNaoConciliadas = data;
 
          }, function errorCallback(response) {
-            toastr.error("Erro ao carregar as transacoes");
-            console.error("Erro ao carregar as transacoes");
+            toastr.error("Erro ao carregar as transacoes nao conciliadas");
+            console.error("Erro ao carregar as transacoes nao conciliadas");
         }).finally(function() {
-            $scope._isLoadingPage = false;
+            $scope._isLoadingPageTrNaoConciliadas = false;
+
+            $timeout(function() {
+
+                //TRANSACOES CONCILIADAS
+                $scope._isLoadingPagetrTrConciliadas = true;
+                dashboardService.getTransactions(1, tecnologiaIds).then(function successCallback(data) {
+                    $scope.trConciliadas = data;
+                }, function errorCallback(response) {
+                    toastr.error("Erro ao carregar as transacoes conciliadas");
+                    console.error("Erro ao carregar as transacoes conciliadas");
+                }).finally(function() {
+                    $scope._isLoadingPagetrTrConciliadas = false;
+
+                    $timeout(function() {
+
+                        //TRANSACOES EDI
+                        $scope._isLoadingPageTrEDI = true;
+                        dashboardService.getTransactions(1, '4828357').then(function successCallback(data) {
+                            $scope.trEDI = data;
+                        }, function errorCallback(response) {
+                            toastr.error("Erro ao carregar as transacoes EDI");
+                            console.error("Erro ao carregar as transacoes EDI");
+                        }).finally(function() {
+                            $scope._isLoadingPageTrEDI = false;
+
+                            $timeout(function() {
+
+                                //TRANSACOES POR ADQUIRENTE E TIPO
+                                $scope._isLoadingPageTrAdquirentesTipo = true;
+                                dashboardService.getTrAdquirentesTipo(tecnologiaIds).then(function successCallback(data) {
+                                    $scope.trAdquirentesTipo = data;
+                                }, function errorCallback(response) {
+                                    toastr.error("Erro ao carregar as transacoes adquirentes e tipo");
+                                    console.error("Erro ao carregar as transacoes adquirentes e tipo");
+                                }).finally(function () {
+                                    $scope._isLoadingPageTrAdquirentesTipo = false;
+                                });
+
+                            }, timeout);
+
+                        });
+
+                    }, timeout);
+
+                });
+
+            }, timeout);
+
         });
+
 
     }
 
@@ -242,20 +241,26 @@ angular.module('admin.services.dashboard', [])
     .service('dashboardService', ['$log', '$http', '$q', '$window', function($log, $http, $q, $window) {
         $log.debug("- DashboardService LOADED");
         return {
-            getTransactions: function(type) {
+            getTransactions: function(type, tecnologiaId) {
                 $log.debug("getTransactions type --> " +  type);
+
+                var dataIni  = moment().subtract(30, "days").format('YYYY-MM-DD');
+                var dataFim = moment().format('YYYY-MM-DD');
+
                 var deferred = $q.defer();
                 $http({
                     method: 'GET',
-                    url: 'http://payreportdemo.ntk.com.br:53680/api/AutoCom/GetTransacaoPorTecnologia',
+                    url: 'http://payreportdemo.ntk.com.br:53680/api/AutoCom/GetTransacaoConciliacaoPorTecnologia',
                     headers: {
                         'Authorization': 'Basic dmljdG9yLmR1YXJ0ZUBudGsuY29tLmJyOnZpY3Rvcg==',
                     },
                     params: {
                         'pessoaId': '3502',
-                        'tecnologiaId': '4828334,4828335,4828336,4828337,4828328,4828328',
-                        'dataIni' : '10/01/2015',
-                        'dataFim' : '10/01/2019'
+                        'tecnologiaId': tecnologiaId,
+                        'tecnologiaTipoId' : '3,4',
+                        'dataIni' : dataIni,
+                        'dataFim' : dataFim,
+                        'conciliada' : type
                     }
                 }).then(function successCallback(response) {
                     deferred.resolve(response.data);
@@ -263,87 +268,33 @@ angular.module('admin.services.dashboard', [])
                     deferred.reject(response);
                 });
 
-                /*var trConciliadas = [
-                    {
-                        "id" : 121,
-                        "title" : "Venda 01",
-                        "created_at" : "2017-06-23T10:41:45.257-03:00",
-                        "updated_at" : "2017-09-21T13:53:11.667-03:00",
-                    },
-                    {
-                        "id" : 122,
-                        "title" : "Venda 02",
-                        "created_at" : "2017-06-23T10:41:45.257-03:00",
-                        "updated_at" : "2017-09-21T13:53:11.667-03:00",
-                    },
-                    {
-                        "id" : 123,
-                        "title" : "Venda 03",
-                        "created_at" : "2017-06-23T10:41:45.257-03:00",
-                        "updated_at" : "2017-09-21T13:53:11.667-03:00",
-                    },
-                    {
-                        "id" : 124,
-                        "title" : "Venda 04",
-                        "created_at" : "2017-06-23T10:41:45.257-03:00",
-                        "updated_at" : "2017-09-21T13:53:11.667-03:00",
-                    },
-                    {
-                        "id" : 125,
-                        "title" : "Venda 05",
-                        "created_at" : "2017-06-23T10:41:45.257-03:00",
-                        "updated_at" : "2017-09-21T13:53:11.667-03:00",
-                    },
-                    {
-                        "id" : 126,
-                        "title" : "Venda 06",
-                        "created_at" : "2017-06-23T10:41:45.257-03:00",
-                        "updated_at" : "2017-09-21T13:53:11.667-03:00",
-                    },
-                    {
-                        "id" : 127,
-                        "title" : "Venda 07",
-                        "created_at" : "2017-06-23T10:41:45.257-03:00",
-                        "updated_at" : "2017-09-21T13:53:11.667-03:00",
-                    },
-                    {
-                        "id" : 128,
-                        "title" : "Venda 08",
-                        "created_at" : "2017-06-23T10:41:45.257-03:00",
-                        "updated_at" : "2017-09-21T13:53:11.667-03:00",
-                    },
-                    {
-                        "id" : 129,
-                        "title" : "Venda 09",
-                        "created_at" : "2017-06-23T10:41:45.257-03:00",
-                        "updated_at" : "2017-09-21T13:53:11.667-03:00",
-                    },
-                    {
-                        "id" : 130,
-                        "title" : "Venda 10",
-                        "created_at" : "2017-06-23T10:41:45.257-03:00",
-                        "updated_at" : "2017-09-21T13:53:11.667-03:00",
-                    }
-                ];
-
-                deferred.resolve(trConciliadas);*/
                 return deferred.promise;
             },
-            getTrAdquirentesTipo: function() {
-                $log.debug("id_analytics called...");
-                var analytics = JSON.parse(localStorage.getItem("ID_ANALYTICS"));
-                if (analytics) {
-                    return analytics;
-                }
+            getTrAdquirentesTipo: function(tecnologiaId) {
+                $log.debug("getTrAdquirentesTipo");
+
+                var dataIni  = moment().subtract(30, "days").format('YYYY-MM-DD');
+                var dataFim = moment().format('YYYY-MM-DD');
+
                 var deferred = $q.defer();
                 $http({
                     method: 'GET',
-                    url: '/analytics/id'
+                    url: 'http://payreportdemo.ntk.com.br:53680/api/AutoCom/GetTransacaoPorTipo',
+                    headers: {
+                        'Authorization': 'Basic dmljdG9yLmR1YXJ0ZUBudGsuY29tLmJyOnZpY3Rvcg==',
+                    },
+                    params: {
+                        'pessoaId': '3502',
+                        'tecnologiaId': tecnologiaId,
+                        'dataIni' : dataIni,
+                        'dataFim' : dataFim
+                    }
                 }).then(function successCallback(response) {
                     deferred.resolve(response.data);
                 }, function errorCallback(response) {
                     deferred.reject(response);
                 });
+
                 return deferred.promise;
             }
         }
