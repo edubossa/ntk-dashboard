@@ -10260,7 +10260,9 @@ input[type="color"] {
   top: 0px;
   left: 0px;
   min-height: 49%;
+  max-height: 49%;
   min-width: 49.5%;
+  max-width: 49.5%;
   margin: 5px;
 }
 .dashboard-top-right {
@@ -10268,7 +10270,9 @@ input[type="color"] {
   top: 0px;
   right: 0px;
   min-height: 49%;
+  max-height: 49%;
   min-width: 49.5%;
+  max-width: 49.5%;
   margin: 5px;
 }
 .dashboard-bottom-left {
@@ -10276,7 +10280,9 @@ input[type="color"] {
   bottom: 0px;
   left: 0px;
   min-height: 49%;
+  max-height: 49%;
   min-width: 49.5%;
+  max-width: 49.5%;
   margin: 5px;
 }
 .dashboard-bottom-right {
@@ -10284,6 +10290,14 @@ input[type="color"] {
   bottom: 0px;
   right: 0px;
   min-height: 49%;
+  max-height: 49%;
   min-width: 49.5%;
+  max-width: 49.5%;
   margin: 5px;
+}
+.table-striped tr:nth-child(odd) {
+  background: #afbcc8;
+}
+.table-striped tr:nth-child(even) {
+  background-color: #c8dcd3;
 }
