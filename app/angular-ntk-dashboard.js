@@ -173,8 +173,8 @@ angular.module('admin.dashboard', ['ngRoute', 'chart.js', 'admin.services.dashbo
 
                         //TRANSACOES EDI
                         $scope._isLoadingPageTrEDI = true;
-                        //dashboardService.getTransactions(1, '48283').then(function successCallback(data) {
-                        dashboardService.getTransactions(1, tecnologiaIds).then(function successCallback(data) {
+                        dashboardService.getTransactions(1, '48283').then(function successCallback(data) {
+                        //dashboardService.getTransactions(1, tecnologiaIds).then(function successCallback(data) {
                             $scope.trEDI = data;
                         }, function errorCallback(response) {
                             toastr.error("Erro ao carregar as transacoes EDI");

@@ -40,6 +40,8 @@
                             <td>{{tr.operacao_Nome}}</td>
                             <td>{{tr.rede_Nome}}</td>
                             <td>{{tr.bandeira_Nome}}</td>
+                            <!--<td><img src="http://localhost:8080/public/images/cielo.png" alt=""> </td>-->
+                            <!--<td><img src="https://gate.2all.com.br/catalog/view/theme/default/images/mastercard.png" > </td> -->
                             <td>{{converteGatePrice(tr.relatorio.aReceberValorBruto, ",")}}</td>
                             <td>{{converteGatePrice(tr.relatorio.aReceberValorLiquido, ",")}}</td>
                             <td>{{converteGatePrice(tr.relatorio.transacaoDescTaxa, ",")}}</td>
@@ -191,15 +193,15 @@
                             <th>Opera&ccedil;&atilde;o </th>
                             <th>Total</th>
                             <th>Cupons</th>
-                            <th></th>
+                            <!--<th></th>-->
                         </tr>
                         </thead>
                         <tbody>
                         <tr ng-repeat="tr in trAdquirentesTipo">
                             <td>{{tr.operacao_Nome}}</td>
                             <td>{{converteGatePrice(tr.valorBruto_Total, ",")}}</td>
-                            <td align="right">{{tr.quantidade_Cupons}}</td>
-                            <td><span class="glyphicon glyphicon-download-alt btn-success-outline btn-borderless"></span></i></td>
+                            <td align="left">{{tr.quantidade_Cupons}}</td>
+                            <!--<td><span class="glyphicon glyphicon-download-alt btn-success-outline btn-borderless"></span></i></td>-->
                         </tr>
                         </tbody>
                     </table>
