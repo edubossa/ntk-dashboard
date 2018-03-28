@@ -26,7 +26,6 @@
                             <th>Bandeira</th>
                             <th>Vl. bruto</th>
                             <th>Vl. líquido</th>
-                            <th>Desc. taxa</th>
                             <th>(%)Tx EDI</th>
                             <th>(%)Tx Cadastrada</th>
                             <th>Plano</th>
@@ -42,11 +41,10 @@
                             <td>{{tr.bandeira_Nome}}</td>
                             <!--<td><img src="http://localhost:8080/public/images/cielo.png" alt=""> </td>-->
                             <!--<td><img src="https://gate.2all.com.br/catalog/view/theme/default/images/mastercard.png" > </td> -->
-                            <td>{{converteGatePrice(tr.relatorio.aReceberValorBruto, ",")}}</td>
-                            <td>{{converteGatePrice(tr.relatorio.aReceberValorLiquido, ",")}}</td>
-                            <td>{{converteGatePrice(tr.relatorio.transacaoDescTaxa, ",")}}</td>
-                            <td>{{converteGatePrice(tr.relatorio.transacaoTaxaEDI, ",")}}</td>
-                            <td>{{converteGatePrice(tr.relatorio.transacaoTaxaCadastrada, ",")}}</td>
+                            <td>{{tr.relatorio_AReceberValorBruto}}</td>
+                            <td>{{tr.relatorio_AReceberValorLiquido}}</td>
+                            <td>{{tr.relatorio_TransacaoTaxaEDI}}</td>
+                            <td>{{tr.relatorio_TransacaoTaxaCadastrada}}</td>
                             <td align="center">{{tr.relatorio.transacaoPlano}}</td>
                         </tr>
                         </tbody>
@@ -85,7 +83,6 @@
                             <th>Bandeira</th>
                             <th>Vl. bruto</th>
                             <th>Vl. líquido</th>
-                            <th>Desc. taxa</th>
                             <th>(%)Tx EDI</th>
                             <th>(%)Tx Cadastrada</th>
                             <th>Plano</th>
@@ -99,11 +96,10 @@
                             <td>{{tr.operacao_Nome}}</td>
                             <td>{{tr.rede_Nome}}</td>
                             <td>{{tr.bandeira_Nome}}</td>
-                            <td>{{converteGatePrice(tr.relatorio.aReceberValorBruto, ",")}}</td>
-                            <td>{{converteGatePrice(tr.relatorio.aReceberValorLiquido, ",")}}</td>
-                            <td>{{converteGatePrice(tr.relatorio.transacaoDescTaxa, ",")}}</td>
-                            <td>{{converteGatePrice(tr.relatorio.transacaoTaxaEDI, ",")}}</td>
-                            <td>{{converteGatePrice(tr.relatorio.transacaoTaxaCadastrada, ",")}}</td>
+                            <td>{{tr.relatorio_AReceberValorBruto}}</td>
+                            <td>{{tr.relatorio_AReceberValorLiquido}}</td>
+                            <td>{{tr.relatorio_TransacaoTaxaEDI}}</td>
+                            <td>{{tr.relatorio_TransacaoTaxaCadastrada}}</td>
                             <td align="center">{{tr.relatorio.transacaoPlano}}</td>
                         </tr>
                         </tbody>
@@ -141,7 +137,6 @@
                             <th>Bandeira</th>
                             <th>Vl. bruto</th>
                             <th>Vl. líquido</th>
-                            <th>Desc. taxa</th>
                             <th>(%)Tx EDI</th>
                             <th>(%)Tx Cadastrada</th>
                             <th>Plano</th>
@@ -155,11 +150,10 @@
                             <td>{{tr.operacao_Nome}}</td>
                             <td>{{tr.rede_Nome}}</td>
                             <td>{{tr.bandeira_Nome}}</td>
-                            <td>{{converteGatePrice(tr.relatorio.aReceberValorBruto, ",")}}</td>
-                            <td>{{converteGatePrice(tr.relatorio.aReceberValorLiquido, ",")}}</td>
-                            <td>{{converteGatePrice(tr.relatorio.transacaoDescTaxa, ",")}}</td>
-                            <td>{{converteGatePrice(tr.relatorio.transacaoTaxaEDI, ",")}}</td>
-                            <td>{{converteGatePrice(tr.relatorio.transacaoTaxaCadastrada, ",")}}</td>
+                            <td>{{tr.relatorio_AReceberValorBruto}}</td>
+                            <td>{{tr.relatorio_AReceberValorLiquido}}</td>
+                            <td>{{tr.relatorio_TransacaoTaxaEDI}}</td>
+                            <td>{{tr.relatorio_TransacaoTaxaCadastrada}}</td>
                             <td align="center">{{tr.relatorio.transacaoPlano}}</td>
                         </tr>
                         </tbody>
@@ -172,11 +166,13 @@
     </div>
 
 
-    <div class="panel panel-default panel-widget dashboard-bottom-right">
-        <br>
+    <div ng-show="!enabledGraphic" class="panel panel-default panel-widget dashboard-bottom-right">
+        <div class="text-right" style="padding: 5px">
+            <button type="button" ng-click="sendEnabledGraphic()" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-tasks"></span></button>
+        </div>
         <div class="row">
             <div class="col-lg-12 text-center">
-                <span style="font-size: x-large; font-weight: bold; color: #0a68b4">Transa&ccedil;&otilde;es - Adquirente e Tipo</span>
+                <span style="font-size: x-large; font-weight: bold; color: #0a68b4">Transa&ccedil;&otilde;es por Tipo</span>
             </div>
         </div>
         <br>
@@ -193,20 +189,40 @@
                             <th>Opera&ccedil;&atilde;o </th>
                             <th>Total</th>
                             <th>Cupons</th>
-                            <!--<th></th>-->
                         </tr>
                         </thead>
                         <tbody>
                         <tr ng-repeat="tr in trAdquirentesTipo">
                             <td>{{tr.operacao_Nome}}</td>
-                            <td>{{converteGatePrice(tr.valorBruto_Total, ",")}}</td>
+                            <td>{{tr.valorBruto_Total}}</td>
                             <td align="left">{{tr.quantidade_Cupons}}</td>
-                            <!--<td><span class="glyphicon glyphicon-download-alt btn-success-outline btn-borderless"></span></i></td>-->
                         </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
+        </div>
+
+
+    </div>
+
+
+    <div id="chart_div" ng-show="enabledGraphic" class="panel panel-default panel-widget dashboard-bottom-right">
+
+
+            <div class="text-right" style="padding: 5px">
+                <button type="button" ng-click="sendEnabledGraphic()" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-tasks"></span></button>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <span style="font-size: x-large; font-weight: bold; color: #0a68b4">Transa&ccedil;&otilde;es por Tipo</span>
+                </div>
+            </div>
+
+
+            <!--<div id="chart_div"></div>-->
+
+
         </div>
 
 
