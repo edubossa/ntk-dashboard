@@ -154,7 +154,8 @@ angular.module('admin.dashboard', ['ngRoute', 'chart.js', 'admin.services.dashbo
         value.push('')
         $scope.trAdquirentesTipo.forEach(function (item) {
             title.push(item.operacao_Nome);
-            value.push(parseFloat(item.valorBruto_Total));
+            var temp = item.valorBruto_Total.replace(".", "").replace(",", "");
+            value.push (parseInt(temp) / 100);
         });
 
         var data = google.visualization.arrayToDataTable([
