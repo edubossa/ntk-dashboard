@@ -11,16 +11,16 @@ angular.module('admin.services.dashboard', [])
                 var deferred = $q.defer();
                 $http({
                     method: 'GET',
-                    url: 'http://payreportdemo.ntk.com.br:53680/api/AutoCom/GetTransacaoConciliacaoPorTecnologia',
+                    url: 'http://api.payreport.com.br/api/AutoCom/GetTransacaoConciliacaoPorTecnologia',
                     headers: {
-                        'Authorization': 'Basic dmljdG9yLmR1YXJ0ZUBudGsuY29tLmJyOnZpY3Rvcg==',
+                        'Authorization': 'Basic dmljdG9yLmR1YXJ0ZUBudGsuY29tLmJyOnZpY3Rvcg=='
                     },
                     params: {
                         'pessoaId': '3504',
                         'tecnologiaId': tecnologiaId,
                         'tecnologiaTipoId' : '3,4',
-                        'dataIni' : dataIni,
-                        'dataFim' : dataFim,
+                        'dataIni' : '2018-03-01', //dataIni,
+                        'dataFim' : '2018-04-06', //dataFim,
                         'conciliada' : type
                     }
                 }).then(function successCallback(response) {
@@ -40,15 +40,15 @@ angular.module('admin.services.dashboard', [])
                 var deferred = $q.defer();
                 $http({
                     method: 'GET',
-                    url: 'http://payreportdemo.ntk.com.br:53680/api/AutoCom/GetTransacaoPorTipo',
+                    url: 'http://api.payreport.com.br/api/AutoCom/GetTransacaoPorTipo',
                     headers: {
                         'Authorization': 'Basic dmljdG9yLmR1YXJ0ZUBudGsuY29tLmJyOnZpY3Rvcg==',
                     },
                     params: {
                         'pessoaId': '3504',
                         'tecnologiaId': tecnologiaId,
-                        'dataIni' : dataIni,
-                        'dataFim' : dataFim
+                        'dataIni' :  '2018-03-01', //dataIni,
+                        'dataFim' : '2018-04-06' //dataFim
                     }
                 }).then(function successCallback(response) {
                     deferred.resolve(response.data);

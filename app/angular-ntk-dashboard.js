@@ -133,7 +133,7 @@ angular.module('admin.dashboard', ['ngRoute', 'chart.js', 'admin.services.dashbo
     $scope._isLoadingPageTrEDI = false;
     $scope._isLoadingPageTrAdquirentesTipo = false;
 
-    var tecnologiaIds = '4828321,4828322,4828323,4828324,4828326,4828327,4828328,4828331,4828334,4828335,4828336,4828337,4828339,4828340,4828341,4828342,4828343,4828347';
+    var tecnologiaIds = '4828321, 4828322, 4828323, 4828324, 4828326, 4828331, 4828334,4828335, 4828339, 4828342,4828336, 4828341,4828337, 4828340, 4828343,4828328,4828347, 4828331,4828350, 4828352, 4828351,4828353';
 
     var timeout = 2000;
 
@@ -251,16 +251,16 @@ angular.module('admin.services.dashboard', [])
                 var deferred = $q.defer();
                 $http({
                     method: 'GET',
-                    url: 'http://payreportdemo.ntk.com.br:53680/api/AutoCom/GetTransacaoConciliacaoPorTecnologia',
+                    url: 'http://api.payreport.com.br/api/AutoCom/GetTransacaoConciliacaoPorTecnologia',
                     headers: {
-                        'Authorization': 'Basic dmljdG9yLmR1YXJ0ZUBudGsuY29tLmJyOnZpY3Rvcg==',
+                        'Authorization': 'Basic dmljdG9yLmR1YXJ0ZUBudGsuY29tLmJyOnZpY3Rvcg=='
                     },
                     params: {
                         'pessoaId': '3504',
                         'tecnologiaId': tecnologiaId,
                         'tecnologiaTipoId' : '3,4',
-                        'dataIni' : dataIni,
-                        'dataFim' : dataFim,
+                        'dataIni' : '2018-03-01', //dataIni,
+                        'dataFim' : '2018-04-06', //dataFim,
                         'conciliada' : type
                     }
                 }).then(function successCallback(response) {
@@ -280,15 +280,15 @@ angular.module('admin.services.dashboard', [])
                 var deferred = $q.defer();
                 $http({
                     method: 'GET',
-                    url: 'http://payreportdemo.ntk.com.br:53680/api/AutoCom/GetTransacaoPorTipo',
+                    url: 'http://api.payreport.com.br/api/AutoCom/GetTransacaoPorTipo',
                     headers: {
                         'Authorization': 'Basic dmljdG9yLmR1YXJ0ZUBudGsuY29tLmJyOnZpY3Rvcg==',
                     },
                     params: {
                         'pessoaId': '3504',
                         'tecnologiaId': tecnologiaId,
-                        'dataIni' : dataIni,
-                        'dataFim' : dataFim
+                        'dataIni' :  '2018-03-01', //dataIni,
+                        'dataFim' : '2018-04-06' //dataFim
                     }
                 }).then(function successCallback(response) {
                     deferred.resolve(response.data);
