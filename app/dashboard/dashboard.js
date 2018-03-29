@@ -40,7 +40,14 @@ angular.module('admin.dashboard', ['ngRoute', 'chart.js', 'admin.services.dashbo
 
         var options = {
             title: 'Transacao por Tipo',
+            titleTextStyle: {
+                color: '#0a68b4',    // any HTML string color ('red', '#cc00cc')
+                fontSize: 22, // 12, 18 whatever you want (don't specify px)
+                bold: true,    // true or false
+                italic: false
+            },
             chartArea: {width: '50%'}
+
         };
         var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
         chart.draw(data, options);
