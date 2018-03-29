@@ -39,7 +39,7 @@ angular.module('admin.dashboard', ['ngRoute', 'chart.js', 'admin.services.dashbo
         ]);
 
         var options = {
-            title: 'Transações por tipo',
+            title: 'Valor transações por tipo',
             titleTextStyle: {
                 color: '#0a68b4',    // any HTML string color ('red', '#cc00cc')
                 fontSize: 22, // 12, 18 whatever you want (don't specify px)
