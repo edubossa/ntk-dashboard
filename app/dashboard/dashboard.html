@@ -37,10 +37,10 @@
                             <td>{{tr.loja_NomeLojaCliente}}</td>
                             <td>{{tr.relatorio.transacaoAutorizacao}}</td>
                             <td>{{tr.operacao_Nome}}</td>
-                            <td>{{tr.rede_Nome}}</td>
-                            <td>{{tr.bandeira_Nome}}</td>
-                            <!--<td><img src="http://localhost:8080/public/images/cielo.png" alt=""> </td>-->
-                            <!--<td><img src="https://gate.2all.com.br/catalog/view/theme/default/images/mastercard.png" > </td> -->
+                            <td ng-if="tr.rede_Nome == 'CIELO'" ><img src="../public/images/adquirente/logo_cielo.png" alt=""> </td>
+                            <td ng-if="tr.rede_Nome == 'REDE'" ><img src="../public/images/adquirente/logo_rede.png" alt=""></td>
+                            <td ng-if="tr.url_bandeira == '' ">{{tr.bandeira_Nome}}</td>
+                            <td ng-if="tr.url_bandeira != '' " > <img src="{{tr.url_bandeira}}" alt=""> </td>
                             <td>{{tr.relatorio_AReceberValorBruto}}</td>
                             <td>{{tr.relatorio_AReceberValorLiquido}}</td>
                             <td>{{tr.relatorio_TransacaoTaxaEDI}}</td>
@@ -94,8 +94,10 @@
                             <td>{{tr.loja_NomeLojaCliente}}</td>
                             <td>{{tr.relatorio.transacaoAutorizacao}}</td>
                             <td>{{tr.operacao_Nome}}</td>
-                            <td>{{tr.rede_Nome}}</td>
-                            <td>{{tr.bandeira_Nome}}</td>
+                            <td ng-if="tr.rede_Nome == 'CIELO'" ><img src="../public/images/adquirente/logo_cielo.png" alt=""> </td>
+                            <td ng-if="tr.rede_Nome == 'REDE'" ><img src="../public/images/adquirente/logo_rede.png" alt=""></td>
+                            <td ng-if="tr.url_bandeira == '' ">{{tr.bandeira_Nome}}</td>
+                            <td ng-if="tr.url_bandeira != '' " > <img src="{{tr.url_bandeira}}" alt=""> </td>
                             <td>{{tr.relatorio_AReceberValorBruto}}</td>
                             <td>{{tr.relatorio_AReceberValorLiquido}}</td>
                             <td>{{tr.relatorio_TransacaoTaxaEDI}}</td>
@@ -148,8 +150,10 @@
                             <td>{{tr.loja_NomeLojaCliente}}</td>
                             <td>{{tr.relatorio.transacaoAutorizacao}}</td>
                             <td>{{tr.operacao_Nome}}</td>
-                            <td>{{tr.rede_Nome}}</td>
-                            <td>{{tr.bandeira_Nome}}</td>
+                            <td ng-if="tr.rede_Nome == 'CIELO'" ><img src="../public/images/adquirente/logo_cielo.png" alt=""> </td>
+                            <td ng-if="tr.rede_Nome == 'REDE'" ><img src="../public/images/adquirente/logo_rede.png" alt=""></td>
+                            <td ng-if="tr.url_bandeira == '' ">{{tr.bandeira_Nome}}</td>
+                            <td ng-if="tr.url_bandeira != '' " > <img src="{{tr.url_bandeira}}" alt=""> </td>
                             <td>{{tr.relatorio_AReceberValorBruto}}</td>
                             <td>{{tr.relatorio_AReceberValorLiquido}}</td>
                             <td>{{tr.relatorio_TransacaoTaxaEDI}}</td>

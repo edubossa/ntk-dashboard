@@ -172,13 +172,60 @@ angular.module('admin.dashboard', ['ngRoute', 'chart.js', 'admin.services.dashbo
     }
     //--------------------------------------------------------------------//
 
+     function loadBandeira(bandeiras) {
+         for(var i = 0; i< bandeiras.length; i++) {
+             switch (bandeiras[i].bandeira_Nome) {
+                 case 'MASTERCARD' :
+                     bandeiras[i].url_bandeira = "https://gate.2all.com.br/catalog/view/theme/default/images/mastercard.png";
+                     break;
+                 case 'VISA' :
+                     bandeiras[i].url_bandeira = "https://gate.2all.com.br/catalog/view/theme/default/images/visa.png";
+                     break;
+                 case 'MAESTRO' :
+                     bandeiras[i].url_bandeira = "https://gate.2all.com.br/catalog/view/theme/default/images/mastercard%20maestro.png";
+                     break;
+                 case 'DINERS' :
+                     bandeiras[i].url_bandeira = "https://gate.2all.com.br/catalog/view/theme/default/images/diners.png";
+                     break;
+                 case 'AMEX' :
+                     bandeiras[i].url_bandeira = "https://gate.2all.com.br/catalog/view/theme/default/images/amex.png";
+                     break;
+                 case 'VISA Electron' :
+                     bandeiras[i].url_bandeira = "https://gate.2all.com.br/catalog/view/theme/default/images/visa%20electron.png";
+                     break;
+                 case 'HIPERCARD' :
+                     bandeiras[i].url_bandeira = "https://gate.2all.com.br/catalog/view/theme/default/images/hipercard.png";
+                     break;
+                 case 'Hiper' :
+                     bandeiras[i].url_bandeira = "https://gate.2all.com.br/catalog/view/theme/default/images/hiper.png";
+                     break;
+                 case 'ELO' :
+                     bandeiras[i].url_bandeira = "https://gate.2all.com.br/catalog/view/theme/default/images/elo.png";
+                     break;
+                 case 'DISCOVER' :
+                     bandeiras[i].url_bandeira = "https://gate.2all.com.br/catalog/view/theme/default/images/discover.png";
+                     break;
+                 case 'AURA' :
+                     bandeiras[i].url_bandeira = "https://gate.2all.com.br/catalog/view/theme/default/images/aura.png";
+                     break;
+                 case 'BANESE CARD' :
+                     bandeiras[i].url_bandeira = "https://gate.2all.com.br/catalog/view/theme/default/images/banesecard.png";
+                     break;
+                 default :
+                     bandeiras[i].url_bandeira = "";
+             }
+
+
+         }
+     }
+
     $scope.load = function () {
 
         //TRANSACOES NAO CONCILIADAS
         $scope._isLoadingPageTrNaoConciliadas = true;
-        dashboardService.getTransactions(2, tecnologiaIds).then(function successCallback(data) {
+        dashboardService.getTransactions(2, tecnologiaIds, '3,4').then(function successCallback(data) {
             $scope.trNaoConciliadas = data;
-
+            loadBandeira($scope.trNaoConciliadas);
          }, function errorCallback(response) {
             toastr.error("Erro ao carregar as transacoes nao conciliadas");
             console.error("Erro ao carregar as transacoes nao conciliadas");
@@ -189,8 +236,9 @@ angular.module('admin.dashboard', ['ngRoute', 'chart.js', 'admin.services.dashbo
 
                 //TRANSACOES CONCILIADAS
                 $scope._isLoadingPagetrTrConciliadas = true;
-                dashboardService.getTransactions(1, tecnologiaIds).then(function successCallback(data) {
+                dashboardService.getTransactions(1, tecnologiaIds, '3,4').then(function successCallback(data) {
                     $scope.trConciliadas = data;
+                    loadBandeira($scope.trConciliadas);
                 }, function errorCallback(response) {
                     toastr.error("Erro ao carregar as transacoes conciliadas");
                     console.error("Erro ao carregar as transacoes conciliadas");
@@ -201,9 +249,9 @@ angular.module('admin.dashboard', ['ngRoute', 'chart.js', 'admin.services.dashbo
 
                         //TRANSACOES EDI
                         $scope._isLoadingPageTrEDI = true;
-                        dashboardService.getTransactions(1, '48283').then(function successCallback(data) {
-                        //dashboardService.getTransactions(1, tecnologiaIds).then(function successCallback(data) {
+                        dashboardService.getTransactions(1, '4828321,4828322,4828323,4828324,4828326,4828327,4828328,4828331,4828334,4828335,4828336,4828337,4828339,4828340,4828341,4828342,4828343,4828347,4828357', '1').then(function successCallback(data) {
                             $scope.trEDI = data;
+                            loadBandeira($scope.trEDI);
                         }, function errorCallback(response) {
                             toastr.error("Erro ao carregar as transacoes EDI");
                             console.error("Erro ao carregar as transacoes EDI");
@@ -273,7 +321,7 @@ angular.module('admin.services.dashboard', [])
     .service('dashboardService', ['$log', '$http', '$q', '$window', function($log, $http, $q, $window) {
         $log.debug("- DashboardService LOADED");
         return {
-            getTransactions: function(type, tecnologiaId) {
+            getTransactions: function(type, tecnologiaId, tecnologiaTipoId) {
                 $log.debug("getTransactions type --> " +  type);
 
                 var dataIni  = moment().subtract(30, "days").format('YYYY-MM-DD');
@@ -289,9 +337,9 @@ angular.module('admin.services.dashboard', [])
                     params: {
                         'pessoaId': '3504',
                         'tecnologiaId': tecnologiaId,
-                        'tecnologiaTipoId' : '3,4',
+                        'tecnologiaTipoId' : tecnologiaTipoId,
                         'dataIni' : '2018-03-01', //dataIni,
-                        'dataFim' : '2018-04-06', //dataFim,
+                        'dataFim' : '2018-12-31', //dataFim,
                         'conciliada' : type
                     }
                 }).then(function successCallback(response) {
@@ -319,7 +367,7 @@ angular.module('admin.services.dashboard', [])
                         'pessoaId': '3504',
                         'tecnologiaId': tecnologiaId,
                         'dataIni' :  '2018-03-01', //dataIni,
-                        'dataFim' : '2018-04-06' //dataFim
+                        'dataFim' : '2018-12-31' //dataFim
                     }
                 }).then(function successCallback(response) {
                     deferred.resolve(response.data);
