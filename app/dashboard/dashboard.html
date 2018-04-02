@@ -32,7 +32,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr ng-repeat="tr in trNaoConciliadas | orderBy : 'transacaoDataHora':true">
+                        <tr ng-repeat="tr in trNaoConciliadas | orderBy : 'transacaoDataHora':false">
                             <td>{{moment(tr.relatorio.transacaoDataHora)}}</td>
                             <td>{{tr.loja_NomeLojaCliente}}</td>
                             <td>{{tr.relatorio.transacaoAutorizacao}}</td>
@@ -89,7 +89,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr ng-repeat="tr in trConciliadas | orderBy : 'transacaoDataHora':true">
+                        <tr ng-repeat="tr in trConciliadas | orderBy : 'transacaoDataHora':false">
                             <td>{{moment(tr.relatorio.transacaoDataHora)}}</td>
                             <td>{{tr.loja_NomeLojaCliente}}</td>
                             <td>{{tr.relatorio.transacaoAutorizacao}}</td>
@@ -145,7 +145,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr ng-repeat="tr in trEDI | orderBy : 'transacaoDataHora':true">
+                        <tr ng-repeat="tr in trEDI | orderBy : 'transacaoDataHora':false">
                             <td>{{moment(tr.relatorio.transacaoDataHora)}}</td>
                             <td>{{tr.loja_NomeLojaCliente}}</td>
                             <td>{{tr.relatorio.transacaoAutorizacao}}</td>
@@ -170,15 +170,14 @@
     </div>
 
 
-    <!--<div ng-show="!enabledGraphic" class="panel panel-default panel-widget dashboard-bottom-right">
-        <div class="text-right" style="padding: 5px">
-            <button type="button" ng-click="sendEnabledGraphic()" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-tasks"></span></button>
-        </div>
+    <div class="panel panel-default panel-widget dashboard-bottom-right">
+        <br>
         <div class="row">
             <div class="col-lg-12 text-center">
                 <span style="font-size: x-large; font-weight: bold; color: #0a68b4">Transa&ccedil;&otilde;es por Tipo</span>
             </div>
         </div>
+
         <br>
 
         <div class="row">
@@ -208,10 +207,10 @@
         </div>
 
 
-    </div>-->
+    </div>
 
 
-    <div id="chart_div" class="panel panel-default panel-widget dashboard-bottom-right">
+    <!--<div id="chart_div" class="panel panel-default panel-widget dashboard-bottom-right">
 
 
             <div class="text-right" style="padding: 5px">
@@ -223,15 +222,10 @@
                 </div>
             </div>
 
-            <br><br>
-
-            <!--<div id="chart_div" style="width: 800px; height: 400px" ></div>-->
-
-
         </div>
 
 
-    </div>
+    </div>-->
 
 
 

@@ -13,7 +13,7 @@ angular.module('admin.services.dashboard', [])
                     method: 'GET',
                     url: 'http://api.payreport.com.br/api/AutoCom/GetTransacaoConciliacaoPorTecnologia',
                     headers: {
-                        'Authorization': 'Basic dmljdG9yLmR1YXJ0ZUBudGsuY29tLmJyOnZpY3Rvcg=='
+                        'Authorization': 'Basic ZmVpcmFudGsyMDE4QG50ay5jb20uYnI6bnRrMjAxOA=='
                     },
                     params: {
                         'pessoaId': '3504',
@@ -42,7 +42,7 @@ angular.module('admin.services.dashboard', [])
                     method: 'GET',
                     url: 'http://api.payreport.com.br/api/AutoCom/GetTransacaoPorTipo',
                     headers: {
-                        'Authorization': 'Basic dmljdG9yLmR1YXJ0ZUBudGsuY29tLmJyOnZpY3Rvcg==',
+                        'Authorization': 'Basic ZmVpcmFudGsyMDE4QG50ay5jb20uYnI6bnRrMjAxOA==',
                     },
                     params: {
                         'pessoaId': '3504',
