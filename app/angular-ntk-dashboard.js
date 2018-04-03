@@ -133,7 +133,7 @@ angular.module('admin.dashboard', ['ngRoute', 'chart.js', 'admin.services.dashbo
     $scope._isLoadingPageTrEDI = false;
     $scope._isLoadingPageTrAdquirentesTipo = false;
 
-    var tecnologiaIds = '4828321,4828322,4828323,4828324,4828326,4828327,4828328,4828331,4828334,4828335,4828337,4828339,4828340,4828341,4828342,4828343,4828347';
+    var tecnologiaIds = '4828321, 4828322, 4828323, 4828324, 4828326, 4828327, 4828328, 4828331, 4828334, 4828335, 4828337, 4828339, 4828340, 4828342, 4828343, 4828347, 4828350, 4828351, 4828353, 4828354, 4828357';
 
     var timeout = 2000;
 
@@ -256,7 +256,7 @@ angular.module('admin.dashboard', ['ngRoute', 'chart.js', 'admin.services.dashbo
 
                         //TRANSACOES EDI
                         $scope._isLoadingPageTrEDI = true;
-                        dashboardService.getTransactions(1, '4828336,4828352', '3,4').then(function successCallback(data) {
+                        dashboardService.getTransactions(1, '4828336, 4828341, 4828352', '3,4').then(function successCallback(data) {
                             $scope.trEDI = data;
                             loadBandeira($scope.trEDI);
                         }, function errorCallback(response) {
@@ -269,7 +269,7 @@ angular.module('admin.dashboard', ['ngRoute', 'chart.js', 'admin.services.dashbo
 
                                 //TRANSACOES POR ADQUIRENTE E TIPO
                                 $scope._isLoadingPageTrAdquirentesTipo = true;
-                                dashboardService.getTrAdquirentesTipo(tecnologiaIds).then(function successCallback(data) {
+                                dashboardService.getTrAdquirentesTipo('4828321, 4828322, 4828323, 4828324, 4828326, 4828327, 4828328, 4828331, 4828334, 4828335, 4828337, 4828339, 4828340, 4828342, 4828343, 4828347, 4828350, 4828351, 4828353, 4828354, 4828357, 4828336, 4828341, 4828352').then(function successCallback(data) {
                                     $scope.trAdquirentesTipo = data;
                                 }, function errorCallback(response) {
                                     toastr.error("Erro ao carregar as transacoes adquirentes e tipo");
