@@ -5,8 +5,8 @@ angular.module('admin.services.dashboard', [])
             getTransactions: function(type, tecnologiaId, tecnologiaTipoId) {
                 $log.debug("getTransactions type --> " +  type);
 
-                var dataIni  = moment().subtract(30, "days").format('YYYY-MM-DD');
-                var dataFim = moment().format('YYYY-MM-DD');
+                var dataIni  = moment().format('YYYY-MM-DD');
+                var dataFim = moment().add(1, "days").format('YYYY-MM-DD');
 
                 var deferred = $q.defer();
                 $http({
@@ -19,8 +19,8 @@ angular.module('admin.services.dashboard', [])
                         'pessoaId': '3504',
                         'tecnologiaId': tecnologiaId,
                         'tecnologiaTipoId' : tecnologiaTipoId,
-                        'dataIni' : '2018-03-01', //dataIni,
-                        'dataFim' : '2018-12-31', //dataFim,
+                        'dataIni' : dataIni,
+                        'dataFim' : dataFim,
                         'conciliada' : type
                     }
                 }).then(function successCallback(response) {
@@ -34,8 +34,8 @@ angular.module('admin.services.dashboard', [])
             getTrAdquirentesTipo: function(tecnologiaId) {
                 $log.debug("getTrAdquirentesTipo");
 
-                var dataIni  = moment().subtract(30, "days").format('YYYY-MM-DD');
-                var dataFim = moment().format('YYYY-MM-DD');
+                var dataIni  = moment().format('YYYY-MM-DD');
+                var dataFim = moment().add(1, "days").format('YYYY-MM-DD');
 
                 var deferred = $q.defer();
                 $http({
@@ -47,8 +47,8 @@ angular.module('admin.services.dashboard', [])
                     params: {
                         'pessoaId': '3504',
                         'tecnologiaId': tecnologiaId,
-                        'dataIni' :  '2018-03-01', //dataIni,
-                        'dataFim' : '2018-12-31' //dataFim
+                        'dataIni' :  dataIni,
+                        'dataFim' : dataFim
                     }
                 }).then(function successCallback(response) {
                     deferred.resolve(response.data);
